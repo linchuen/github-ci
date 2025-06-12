@@ -17,10 +17,12 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: '21'
-          cache: 'maven'  # 可選，自動快取 ~/.m2
+          cache: 'maven'
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
       - name: Show built file
-        run: ls -lh target/*.jar
+        run: |
+          echo "Listing built JAR files:"
+          find target -name "*.jar" -exec ls -lh {} \;
